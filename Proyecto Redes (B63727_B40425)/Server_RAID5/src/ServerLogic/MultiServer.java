@@ -8,6 +8,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -40,8 +41,8 @@ public class MultiServer {
     class EchoClientHandler extends Thread {
 
         //Instances
-        private String name = "";
-        private String password = "";
+        private String nodesPath = "";
+        private String numberNodes = "";
         private Socket clientSocket;
         private PrintWriter outline;
         private BufferedReader inputline;
@@ -110,14 +111,12 @@ public class MultiServer {
                     }
 
                     if (inl.equalsIgnoreCase("iniciar sesion")) {
-                        String nombre = inputline.readLine();
-                        String contraseña = inputline.readLine();
-                        System.out.println("A recibido?: " + nombre);
-                        System.out.println("A recibido?: " + contraseña);
-                        this.name = nombre;
-                        this.password = contraseña;
+                        String nodesPath = inputline.readLine();
+                        String numberNodes = inputline.readLine();
+                        this.nodesPath = nodesPath;
+                        this.numberNodes = numberNodes;
 
-                        if (User.checkUser(nombre, contraseña)) {
+                        if (User.checkUser("admin", "admin")) {
                             outline.println("acceso");
                             inl = inputline.readLine();
                             System.out.println("A recibido?: " + inl);
@@ -162,7 +161,7 @@ public class MultiServer {
 
         public void sendDirectorie() throws IOException {
 
-            File dir = new File("Carpetas\\" + name);
+            File dir = new File("Carpetas\\" + nodesPath);
             String[] ficheros = dir.list();
 
             if (ficheros == null) {
@@ -218,7 +217,7 @@ public class MultiServer {
 
                 // Creamos flujo de salida, este flujo nos sirve para 
                 // indicar donde guardaremos el archivo
-                FileOutputStream fos = new FileOutputStream("Carpetas\\" + name + "\\" + nombreArchivo);
+                FileOutputStream fos = new FileOutputStream("Carpetas\\" + nodesPath + "\\" + nombreArchivo);
                 BufferedOutputStream out = new BufferedOutputStream(fos);
                 BufferedInputStream in = new BufferedInputStream(clientSocket.getInputStream());
 
@@ -260,7 +259,7 @@ public class MultiServer {
 
                 // Creamos flujo de salida, este flujo nos sirve para 
                 // indicar donde guardaremos el archivo
-                FileOutputStream fos = new FileOutputStream("Carpetas\\" + name + "\\" + nombreArchivo);
+                FileOutputStream fos = new FileOutputStream(this.nodesPath + "\\" + nombreArchivo);
                 BufferedOutputStream out = new BufferedOutputStream(fos);
                 BufferedInputStream in = new BufferedInputStream(clientSocket.getInputStream());
 
@@ -276,7 +275,11 @@ public class MultiServer {
                 out.write(buffer);
                 out.flush();
                 fos.close();
-
+                //Llamado al metodo para cortar los archivos y meterlos en los nodos
+                fileCutter(this.nodesPath + "\\" + nombreArchivo, nombreArchivo);
+                File aux = new File(this.nodesPath + "\\" + nombreArchivo);
+                aux.delete();
+                
                 return true;
             } catch (Exception e) {
                 System.err.println("Error - Archivo No Recibido.");
@@ -291,7 +294,7 @@ public class MultiServer {
             try {
                 // Creamos el archivo que vamos a enviar
                 System.out.println("Nombre del Archivo: " + nombreArchivo);
-                File archivo = new File("Carpetas\\" + name + "\\" + nombreArchivo);
+                File archivo = new File("Carpetas\\" + nodesPath + "\\" + nombreArchivo);
 
                 // Obtenemos el tamaño del archivo
                 int fileLength = (int) archivo.length();
@@ -304,7 +307,7 @@ public class MultiServer {
                 getDos().writeInt(fileLength);
 
                 // Creamos flujo de entrada para realizar la lectura del archivo en bytes
-                FileInputStream fis = new FileInputStream("Carpetas\\" + name + "\\" + nombreArchivo);
+                FileInputStream fis = new FileInputStream("Carpetas\\" + nodesPath + "\\" + nombreArchivo);
                 BufferedInputStream bis = new BufferedInputStream(fis);
 
                 // Creamos un array de tipo byte con el tamaño del archivo 
@@ -331,6 +334,68 @@ public class MultiServer {
                 return false;
             }
         }//End SendFile
+
+        //Método encargado de dividir los archivos de texto plano
+        public void fileCutter(String filePath, String fileName) throws FileNotFoundException, IOException {
+            File inputFile = new File(filePath);
+
+            FileInputStream inputStream;
+
+            String newFileName;
+
+            FileOutputStream filePart;
+
+            int fileSize = (int) inputFile.length();
+
+            int nChunks = 0, read = 0, readLength = 5;
+
+            byte[] byteChunkPart;
+
+            inputStream = new FileInputStream(inputFile);
+
+            int aux = 1;
+
+            while (fileSize > 0) {
+
+                if (aux > Integer.parseInt(this.numberNodes)) {
+                    aux = 1;
+                }
+
+                if (fileSize <= 5) {
+
+                    readLength = fileSize;
+
+                }
+
+                byteChunkPart = new byte[readLength];
+
+                read = inputStream.read(byteChunkPart, 0, readLength);
+
+                fileSize -= read;
+
+                assert (read == byteChunkPart.length);
+
+                nChunks++;
+
+                newFileName = this.nodesPath + "\\" + aux + "\\" + Integer.toString(nChunks - 1) + fileName;
+
+                filePart = new FileOutputStream(new File(newFileName));
+
+                filePart.write(byteChunkPart);
+
+                filePart.flush();
+
+                filePart.close();
+
+                byteChunkPart = null;
+
+                filePart = null;
+                                
+                aux = aux + 1;
+
+            }
+            inputStream.close();
+        }//end FileCutter
 
     }
 

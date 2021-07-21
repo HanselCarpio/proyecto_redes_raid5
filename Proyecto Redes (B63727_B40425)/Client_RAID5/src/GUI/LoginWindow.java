@@ -76,8 +76,8 @@ public class LoginWindow extends JFrame implements ActionListener {
                 usuario.addNodes(jTextField_path.getText(), jTextField_numberNodes.getText());
 
                 Client_RAID5.getClient().getOut().println("iniciar sesion");
-                Client_RAID5.getClient().getOut().println("admin");
-                Client_RAID5.getClient().getOut().println("admin");
+                Client_RAID5.getClient().getOut().println(jTextField_path.getText());
+                Client_RAID5.getClient().getOut().println(jTextField_numberNodes.getText());
 
             } catch (Exception ae) {
             }
