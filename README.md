@@ -15,6 +15,7 @@ De igual forma, tambien se puede utilizar
 
 Visual Studio Code v1.56: https://code.visualstudio.com/Download
 
+Manual para Descargar y Preparar Proyecto
 
 Teniendo los requerimientos necesarios instalados en la pc, procederemos a descargar la versión más reciente del proyecto, para ello es necesario dar clic en la flecha que esta ubicada en el botón de color verde "CODE" y luego de que se desplegué el menú, darle clic a al opción "DOWNLOAD ZIP"
 
