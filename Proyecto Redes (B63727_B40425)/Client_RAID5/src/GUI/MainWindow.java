@@ -13,8 +13,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
+/**
+ * Esta clase contiene los atributos y metodos de un MainWindow
+ *
+ * @author Bryan Keihl, Hansel Carpio y Victor Fernández
+ * @version 1.0
+ * @see MainWindow
+ */
 public class MainWindow extends JFrame implements ActionListener {
 
+    /**
+     * Actibutos del MainWindow
+     *
+     *
+     */
     //Instances
     //Label
     private JLabel jlabel_IP;
@@ -27,12 +39,23 @@ public class MainWindow extends JFrame implements ActionListener {
 
     JDesktopPane jdesktop_pane_principal;
 
+    /**
+     * Constructor
+     *
+     *
+     */
     public MainWindow() {
         this.setTitle("Proyecto II - Implementación de un RAID 5");
         this.setResizable(false);
         this.setSize(490, 400);
     }
 
+    /**
+     * Metodo init para configuara los atributos de la clase y mostrar los componentes visuales
+     *
+     *
+     * @throws java.net.UnknownHostException
+     */
     public void init() throws UnknownHostException {
         this.setLayout(null);
 
@@ -77,6 +100,11 @@ public class MainWindow extends JFrame implements ActionListener {
         this.jdesktop_pane_principal.setVisible(false);
     }
 
+    /**
+     * Boton que nos deja conectarcon el servidor
+     *
+     *
+     */
     @Override
     public void actionPerformed(ActionEvent arg0) {
 

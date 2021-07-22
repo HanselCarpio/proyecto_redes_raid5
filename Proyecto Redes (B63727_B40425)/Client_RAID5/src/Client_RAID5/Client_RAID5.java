@@ -6,6 +6,13 @@ import ClientLogic.ClassClient;
 import GUI.LoginWindow;
 import java.net.UnknownHostException;
 
+/**
+ * Esta clase contiene los atributos y metodos de un Client_RAID5
+ *
+ * @author Bryan Keihl, Hansel Carpio y Victor Fernández
+ * @version 1.0
+ * @see Client_RAID5
+ */
 public class Client_RAID5 {
 
     //Class Instances
@@ -15,6 +22,14 @@ public class Client_RAID5 {
     private static MainWindow mainWindow;
 
     //Main
+    /**
+     * Main para iniciar el cliente
+     *
+     *
+     * @param args
+     * @throws java.lang.InterruptedException
+     * @throws java.net.UnknownHostException
+     */
     public static void main(String[] args) throws InterruptedException, UnknownHostException {
         //Instances are made
         client = new ClassClient(); 

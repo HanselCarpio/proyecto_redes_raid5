@@ -25,8 +25,20 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Esta clase contiene los atributos y metodos de un MainClientWindow
+ *
+ * @author Bryan Keihl, Hansel Carpio y Victor Fernández
+ * @version 1.0
+ * @see MainClientWindow
+ */
 //MainClientWindow Class 
 public class MainClientWindow extends JFrame implements ActionListener {
+     /**
+     * Actibutos del MainClientWindow
+     *
+     *
+     */
 
     //Instances
     //Label 
@@ -44,6 +56,11 @@ public class MainClientWindow extends JFrame implements ActionListener {
     //Boolean Instances
     public boolean flag;
 
+    /**
+     * Constructor
+     *
+     *
+     */
     public MainClientWindow() {
         this.setTitle("saSearch - Busqueda de Libros y Metadatos");
         this.setResizable(false);
@@ -52,6 +69,11 @@ public class MainClientWindow extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Metodo init para configuara los atributos de la clase y mostrar los componentes visuales
+     *
+     *
+     */
     public void init() {
         this.setLayout(null);
 
@@ -101,6 +123,11 @@ public class MainClientWindow extends JFrame implements ActionListener {
         this.jbtn_Receive = jbtn_Receive;
     }
 
+    /**
+     * Boton para enviar o descargar archivo
+     *
+     *
+     */
     @Override
     public void actionPerformed(ActionEvent arg0) {
         if (arg0.getSource() == this.jbtn_Send) { //Button action Send
@@ -128,6 +155,13 @@ public class MainClientWindow extends JFrame implements ActionListener {
     }
 
     //sendMessage Method
+    /**
+     * Abre el fileChooser para selecionar un archivo para enviar
+     *
+     *
+     * @return 
+     * @throws java.io.IOException
+     */
     public boolean sendMessage() throws IOException {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
@@ -145,6 +179,14 @@ public class MainClientWindow extends JFrame implements ActionListener {
     }//End sendMessage Method
 
     //SendFile Method
+    /**
+     * Metodo que envia el archivo al servidor
+     *
+     *
+     * @param fileName
+     * @return 
+     * @throws java.io.FileNotFoundException
+     */
     public boolean sendFile(String fileName) throws FileNotFoundException, IOException {
 
         try {
@@ -202,6 +244,12 @@ public class MainClientWindow extends JFrame implements ActionListener {
     }
 
     //downloadFile
+    /**
+     * Metodo que descargar archivo desde el servidor
+     *
+     *
+     * @return 
+     */
     public boolean downloadFile() {
 
         while (true) {

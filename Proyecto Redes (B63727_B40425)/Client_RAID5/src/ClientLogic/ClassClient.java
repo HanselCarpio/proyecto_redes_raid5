@@ -8,9 +8,21 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 //Thread Class
+/**
+ * Esta clase contiene los atributos y metodos de un ClassClient
+ *
+ * @author Bryan Keihl, Hansel Carpio y Victor Fernández
+ * @version 1.0
+ * @see ClassClient
+ */
 public class ClassClient {
 
     //Thread Instances
+    /**
+     * Actibutos del ClassClient
+     *
+     *
+     */
     private DataOutputStream dos;
     private BufferedOutputStream bos;
     private String inputLineWindow;
@@ -24,6 +36,14 @@ public class ClassClient {
     private ArrayList arrayList;
 
     //Function in charge of start the connection
+    /**
+     * Inicia la conexion con el servidor
+     *
+     *
+     * @param ip
+     * @param port
+     * @return 
+     */
     public boolean startConnection(String ip, int port) {
         try {
             absolutepath = "";
@@ -48,6 +68,11 @@ public class ClassClient {
     }//End Start Connection
 
     //Function in charge to stop connection
+    /**
+     * Detiene la conexion
+     *
+     *
+     */
     public void stopConnection() {
         try {
             in.close();
@@ -61,6 +86,12 @@ public class ClassClient {
     }//End StopConnection
 
     //Getters & Setters
+    /**
+     * Los get y set de la clase
+     *
+     *
+     * @return 
+     */
     public PrintWriter getOut() {
         return out;
     }
@@ -132,9 +163,20 @@ public class ClassClient {
     public ReciveAndSendServer getReciveFromServer() {
         return reciveFromServer;
     }
+    /**
+     * Los get y set de la clase
+     *
+     *
+     */
     //End Getters & Setters
 
     //Function in charge of check if there are any files in directory
+    /**
+     * Revisa si hay un archivo
+     *
+     *
+     * @return 
+     */
     public boolean difFiles() {
         try {
             File aux = new File(absolutepath);
@@ -173,6 +215,11 @@ public class ClassClient {
     }//End difFiles
 
     //Function in Charge of sending and downloading files
+    /**
+     * Metodo para enviar y descargar archivos
+     *
+     *
+     */
     public void start() {
         String inputLine = "";
         try {
@@ -248,6 +295,12 @@ public class ClassClient {
     }//End Start
 
     //Function in charge of sending sincronize files
+    /**
+     *Sincroniza los archivo para mpstrar
+     *
+     *
+     * @param fileName
+     */
     public void sendSincroFiles(String fileName) {
 
         try {
@@ -258,7 +311,7 @@ public class ClassClient {
             int fileLength = (int) file.length();
             System.out.println("Tam cliente: " + fileLength);
             System.out.println("Enviando Archivo: " + file.getName());
-           
+
             // We send the file
             Client_RAID5.getClient().getDos().writeUTF(file.getName());
             Client_RAID5.getClient().getDos().writeInt(fileLength);

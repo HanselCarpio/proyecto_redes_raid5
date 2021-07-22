@@ -9,10 +9,22 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+/**
+ * Esta clase contiene los atributos y metodos de un LoginWindow
+ *
+ * @author Bryan Keihl, Hansel Carpio y Victor Fernández
+ * @version 1.0
+ * @see LoginWindow
+ */
 public class LoginWindow extends JFrame implements ActionListener {
 
     //Instances
     //Label
+    /**
+     * Actibutos del login
+     *
+     *
+     */
     private JLabel jLabel_Menu;
     private JLabel jlabel_path;
     private JLabel jlabel_numberNodes;
@@ -22,12 +34,22 @@ public class LoginWindow extends JFrame implements ActionListener {
     //Button
     private JButton jButton_Continue;
 
+    /**
+     * Constructor
+     *
+     *
+     */
     public LoginWindow() {
         this.setTitle("Ingreso de la Ruta de Carpetas y # de Nodos");
         this.setResizable(false);
         this.setSize(490, 400);
     }
 
+    /**
+     * Metodo init para configuara los atributos de la clase y mostrar los componentes visuales
+     *
+     *
+     */
     public void init() {
         this.setLayout(null);
 
@@ -66,6 +88,11 @@ public class LoginWindow extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Boton para crear los nodos y guardar los nodos en una ruta 
+     *
+     *
+     */
     @Override
     public void actionPerformed(ActionEvent arg0) { //Button action Log In
 
