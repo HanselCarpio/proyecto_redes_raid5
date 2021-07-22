@@ -21,6 +21,7 @@ import java.util.List;
 /**
  * Esta clase contiene los atributos y metodos de un MultiServer
  *
+ * *
  * @author Bryan Keihl, Hansel Carpio y Victor Fernández
  * @version 1.0
  * @see MultiServer
