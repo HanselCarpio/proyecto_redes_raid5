@@ -15,6 +15,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 //Class in charge of the server methods
 public class MultiServer {
@@ -161,7 +163,7 @@ public class MultiServer {
 
         public void sendDirectorie() throws IOException {
 
-            File dir = new File("Carpetas\\" + nodesPath);
+            File dir = new File(this.nodesPath + "\\-");
             String[] ficheros = dir.list();
 
             if (ficheros == null) {
@@ -217,7 +219,7 @@ public class MultiServer {
 
                 // Creamos flujo de salida, este flujo nos sirve para 
                 // indicar donde guardaremos el archivo
-                FileOutputStream fos = new FileOutputStream("Carpetas\\" + nodesPath + "\\" + nombreArchivo);
+                FileOutputStream fos = new FileOutputStream(this.nodesPath + "\\" + nombreArchivo);
                 BufferedOutputStream out = new BufferedOutputStream(fos);
                 BufferedInputStream in = new BufferedInputStream(clientSocket.getInputStream());
 
@@ -259,7 +261,7 @@ public class MultiServer {
 
                 // Creamos flujo de salida, este flujo nos sirve para 
                 // indicar donde guardaremos el archivo
-                FileOutputStream fos = new FileOutputStream(this.nodesPath + "\\" + nombreArchivo);
+                FileOutputStream fos = new FileOutputStream(this.nodesPath + "\\-\\" + nombreArchivo);
                 BufferedOutputStream out = new BufferedOutputStream(fos);
                 BufferedInputStream in = new BufferedInputStream(clientSocket.getInputStream());
 
@@ -276,10 +278,8 @@ public class MultiServer {
                 out.flush();
                 fos.close();
                 //Llamado al metodo para cortar los archivos y meterlos en los nodos
-                fileCutter(this.nodesPath + "\\" + nombreArchivo, nombreArchivo);
-                File aux = new File(this.nodesPath + "\\" + nombreArchivo);
-                aux.delete();
-                
+                fileCutter(this.nodesPath + "\\-\\" + nombreArchivo, nombreArchivo);
+
                 return true;
             } catch (Exception e) {
                 System.err.println("Error - Archivo No Recibido.");
@@ -294,7 +294,7 @@ public class MultiServer {
             try {
                 // Creamos el archivo que vamos a enviar
                 System.out.println("Nombre del Archivo: " + nombreArchivo);
-                File archivo = new File("Carpetas\\" + nodesPath + "\\" + nombreArchivo);
+                File archivo = new File(this.nodesPath + "\\-\\" + nombreArchivo);
 
                 // Obtenemos el tamaño del archivo
                 int fileLength = (int) archivo.length();
@@ -307,7 +307,7 @@ public class MultiServer {
                 getDos().writeInt(fileLength);
 
                 // Creamos flujo de entrada para realizar la lectura del archivo en bytes
-                FileInputStream fis = new FileInputStream("Carpetas\\" + nodesPath + "\\" + nombreArchivo);
+                FileInputStream fis = new FileInputStream(this.nodesPath + "\\-\\" + nombreArchivo);
                 BufferedInputStream bis = new BufferedInputStream(fis);
 
                 // Creamos un array de tipo byte con el tamaño del archivo 
@@ -321,16 +321,19 @@ public class MultiServer {
                     getBos().write(buffer[i]);
                 }
 
-                System.out.println("Archivo Enviado: " + archivo.getName());
                 // Cerramos socket y flujos
                 bis.close();
                 getBos().flush();
                 getDos().flush();
 
+                //Se arma la imagen para enviarla 
+                putTogetherFiles(nombreArchivo);
+                System.out.println("Archivo Enviado: " + archivo.getName());
+
                 return true;
 
             } catch (Exception e) {
-                System.err.println("Error - Archivo no enviado - " + e.toString());
+                System.out.println("El archivo se ha armado y se ha enviado con éxito!");
                 return false;
             }
         }//End SendFile
@@ -390,12 +393,65 @@ public class MultiServer {
                 byteChunkPart = null;
 
                 filePart = null;
-                                
+
                 aux = aux + 1;
 
             }
             inputStream.close();
         }//end FileCutter
+
+        //Metodo que une los archivos que estan en partes
+        public void putTogetherFiles(String fileName) throws FileNotFoundException, IOException {
+
+            File ofile = new File(fileName);
+            int x = 0;
+
+            FileOutputStream fos;
+
+            FileInputStream fis;
+
+            byte[] fileBytes;
+
+            int bytesRead = 0;
+
+            List<File> list = new ArrayList<File>();
+
+            for (int i = 1; i <= Integer.parseInt(this.numberNodes); i++) {
+
+                list.add(new File(this.nodesPath + "\\" + i + "\\" + x + "archivo"));
+                x++;
+            }
+
+            fos = new FileOutputStream(ofile, true);
+
+            for (File file : list) {
+
+                fis = new FileInputStream(file);
+
+                fileBytes = new byte[(int) file.length()];
+
+                bytesRead = fis.read(fileBytes, 0, (int) file.length());
+
+                assert (bytesRead == fileBytes.length);
+
+                assert (bytesRead == (int) file.length());
+
+                fos.write(fileBytes);
+
+                fos.flush();
+
+                fileBytes = null;
+
+                fis.close();
+
+                fis = null;
+
+            }
+
+            fos.close();
+
+            fos = null;
+        }//End PutTogetherFile
 
     }
 

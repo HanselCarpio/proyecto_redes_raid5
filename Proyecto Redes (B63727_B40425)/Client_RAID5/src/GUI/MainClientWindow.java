@@ -62,13 +62,13 @@ public class MainClientWindow extends JFrame implements ActionListener {
         image = new ImageIcon("C:\\Users\\bryan\\Documents\\NetBeansProjects\\Proyecto Redes (B63727_B40425)\\Client_RAID5\\src\\img\\Send Wallpaper.png");
         //Buffered Image
         //Buttons
-        this.jbtn_Send = new JButton("Guardar");
-        this.jbtn_Receive = new JButton("Recibir");
+        this.jbtn_Send = new JButton("Cargar Libro");
+        this.jbtn_Receive = new JButton("Descargar Libro");
         //Table
         this.jpanel_Table = new TablePanel();
         //Placing
         this.jbtn_Send.setBounds(380, 220, 110, 30);
-        this.jbtn_Receive.setBounds(80, 220, 110, 30);
+        this.jbtn_Receive.setBounds(60, 220, 130, 30);
         this.label_pic.setBounds(330, 9, 200, 200);
         //Adding to window
         this.add(this.jbtn_Receive);
