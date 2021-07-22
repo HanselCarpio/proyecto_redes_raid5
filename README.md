@@ -1,6 +1,6 @@
 # proyecto_redes_raid5
 
-Proyecto #2 de Redes y Comunicación de Datos. Servidor y cliente RAID5, (Bryan Keihl, Hansel Carpio &amp; Victor Fernandez)
+Proyecto #2 de Redes y Comunicación de Datos. Servidor y cliente RAID5, (Bryan Keihl, Hansel Carpio &amp; Victor Fernández)
 
 
 Requerimentos para ejecutar correctamente este proyecto:
@@ -15,70 +15,30 @@ De igual forma, tambien se puede utilizar
 
 Visual Studio Code v1.56: https://code.visualstudio.com/Download
 
+Manual para Descargar y Preparar Proyecto
 
-Teniendo esto previemente instalado en la pc, procederemos a descargar la version más reciente del proyecto, para ello es necesario dar click en la fecha que esta ubicada en el boton de color verde "CODE" y luego de que se desplegue el menú, darle click a al opción "DOWNLOAD ZIP"
+Teniendo los requerimientos necesarios instalados en la pc, procederemos a descargar la versión más reciente del proyecto, para ello es necesario dar clic en la flecha que esta ubicada en el botón de color verde "CODE" y luego de que se desplegué el menú, darle clic a al opción "DOWNLOAD ZIP"
 
-IMAGEN
+![](https://github.com/HanselCarpio/proyecto_redes_raid5/blob/main/wiki_images/Captura%20de%20pantalla%20(59).png)
 
-Luego de descargar correctamente el proyecto, lo colocamos en la ubicacion de prefecenecia y se precede a descomprimir el .zip y se obtendran los siguientes archivos
+Luego de descargar correctamente el proyecto, lo colocamos en la ubicación de preferencia y se procede a descomprimir el .zip y se obtendrán los siguientes archivos
 
-IMAGEN
+![](https://github.com/HanselCarpio/proyecto_redes_raid5/blob/main/wiki_images/Captura%20de%20pantalla%20(61).png)
 
 Donde en la carpeta llamada "Proyecto Redes (B63727_B40425)" se encontrarán los archivos correspondientes al proyecto java
 
-IMAGEN
+![](https://github.com/HanselCarpio/proyecto_redes_raid5/blob/main/wiki_images/Captura%20de%20pantalla%20(62).png)
 
-Luego de esto, abriremos Apache Netbeans y daremos en la siguiente opcion para poder cargar los proyectos
+Luego de esto, abriremos Apache Netbeans y daremos en la siguiente opción para poder cargar los proyectos
 
-IMAGEN
+![](https://github.com/HanselCarpio/proyecto_redes_raid5/blob/main/wiki_images/Captura%20de%20pantalla%20(63).png)
 
-Luego, buscaremos la ubicacion donde tenemos nuestro proyecto correspondiente
+Luego, buscaremos la ubicación donde tenemos nuestro proyecto correspondiente
 
-IMAGEN
+![](https://github.com/HanselCarpio/proyecto_redes_raid5/blob/main/wiki_images/Captura%20de%20pantalla%20(64).png)
 
-El siguiente paso a seguir es el de seleccionar uno de esos dos proyectos, en este caso empezaremos con Client_RAID5, donde al abrirlo se desplegará una ventana emergente con una advertencia sobre librerias faltantes
+El siguiente paso a seguir es el de seleccionar los dos proyectos
 
-IMAGEN
+![](https://github.com/HanselCarpio/proyecto_redes_raid5/blob/main/wiki_images/Captura%20de%20pantalla%20(65).png)
 
-En este punto debemos seleccionar la opción de solucionar problemas (Resolve Problems), donde nos aparecera el sguiente cuadro
-
-IMAGEN
-
-Una vez ahí seleccionamos el primer problema y le daremos a la casilla de resolver (Resolve) y se nos desplegará otra venta donde vamos a buscar  la carpeta "MySQL Jar" que esta dentro de la carpeta que descomprimimos al principio
-
-IMAGEN
-
-Dentro de esa carpeta habrán 2 archivos de extención.jar que son las librerias faltantes, elegimos la opción correcta del problema a resolver y le damos a la opción de "Open"
-
-IMAGEN
-
-Una vez realizado esto, repetimos los pasos para resolver el otro problema de faltante de libreria
-
-IMAGEN
-
-Donde elegimos el otro archivo .jar que nos detalla en el margen superior, la misma ventana de busqueda
-
-IMAGEN
-
-Luego de esto, se verá reflejado en la ventana, con un check, que los dos problemas ya están solucionados
-
-IMAGEN
-
-Al finalizar esto, procedemos a buscar el otro proyecto, que sería el de Server_RAID5
-
-IMAGEN
-
-Cuando abrimos este, se nos desplegara la misma ventena que nos indica los miemos errores de faltante de librerias
-
-IMAGEN
-
-Para resolver estos, tenemos que realizar los mismos pasos que con el Client_RIAD5...
-
-Una vez realizado, procedemos a verificar que todo este corecto, donde en la parte derecha de Apache Netbeans estará el menu de los dos proyectos y su respectivo despliegue de archivos. Aqui nos iremos a la opción de "Libraries" y tiene que aparecer de la siguiente manera
-
-IMAGEN
-
-Como parte del proyecto, estos archivos con extencion .jar son utilizados para la conexion desde java, se necesita un Java Database Connectivity, más conocida por sus siglas JDBC, que es una API que permite la ejecución de operaciones sobre bases de datos desde el lenguaje de programación Java.
-
-
-Concluido todo esto, se tiene lo necesario para ejecutar el proyecto, para saber sobre su utilizacion dirigirse a la wiki respectiva
+Concluido todo esto, se tiene lo necesario para ejecutar el proyecto. Para saber sobre su utilizacion dirigirse a la wiki respectiva
