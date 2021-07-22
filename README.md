@@ -1,6 +1,6 @@
 # proyecto_redes_raid5
 
-Proyecto #2 de Redes y Comunicación de Datos. Servidor y cliente RAID5, (Bryan Keihl, Hansel Carpio &amp; Victor Fernandez)
+Proyecto #2 de Redes y Comunicación de Datos. Servidor y cliente RAID5, (Bryan Keihl, Hansel Carpio &amp; Victor Fernández)
 
 
 Requerimentos para ejecutar correctamente este proyecto:
@@ -41,4 +41,4 @@ El siguiente paso a seguir es el de seleccionar los dos proyectos
 
 ![](https://github.com/HanselCarpio/proyecto_redes_raid5/blob/main/wiki_images/Captura%20de%20pantalla%20(65).png)
 
-Concluido todo esto, se tiene lo necesario para ejecutar el proyecto, para saber sobre su utilizacion dirigirse a la wiki respectiva
+Concluido todo esto, se tiene lo necesario para ejecutar el proyecto. Para saber sobre su utilizacion dirigirse a la wiki respectiva
