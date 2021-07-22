@@ -18,14 +18,31 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Esta clase contiene los atributos y metodos de un MultiServer
+ *
+ * @author Bryan Keihl, Hansel Carpio y Victor Fernández
+ * @version 1.0
+ * @see MultiServer
+ */
 //Class in charge of the server methods
 public class MultiServer {
 
+    /**
+     * Actibutos del MultiServer
+     *
+     *
+     */
     //Instances
     private ServerSocket serverSocket;
     private String nameAux;
     private String passwordAux;
 
+    /**
+     * Inicia el servidor
+     *
+     *
+     */
     //Method in charge of start the server 
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
@@ -35,14 +52,29 @@ public class MultiServer {
     }//End Start
 
     //Method in charge of closing the sockect connection
+    /**
+     * Detiene el servidor
+     *
+     *
+     */
     public void stop() throws IOException {
         serverSocket.close();
     }//End stop
 
     //Thread Class
+    /**
+     * Clase del hilo del servidor
+     *
+     *
+     */
     class EchoClientHandler extends Thread {
 
         //Instances
+        /**
+         * Atributos del EchoClientHandler
+         *
+         *
+         */
         private String nodesPath = "";
         private String numberNodes = "";
         private Socket clientSocket;
@@ -55,6 +87,11 @@ public class MultiServer {
 
         int i = 0;
 
+        /**
+         * Constructor
+         *
+         *
+         */
         public EchoClientHandler(Socket socket) throws IOException {
 
             this.clientSocket = socket;
@@ -62,6 +99,11 @@ public class MultiServer {
 
         }
 
+        /**
+         * Metodo run que recibe una peticion del cliente 
+         *
+         *
+         */
         @Override
         public void run() {
             try {
@@ -161,6 +203,7 @@ public class MultiServer {
             return bos;
         }
 
+        
         public void sendDirectorie() throws IOException {
 
             File dir = new File(this.nodesPath + "\\-");
@@ -202,6 +245,11 @@ public class MultiServer {
             }
             return false;
         }
+        /**
+         * Metodo para obtener los archivos sincronizados
+         *
+         *
+         */
 
         public void getSincroFile() {
 
@@ -245,6 +293,11 @@ public class MultiServer {
 
         }
 
+        /**
+         * Metodo que obtine los archivos
+         *
+         *
+         */
         public boolean getFile() {
 
             try {
@@ -289,6 +342,11 @@ public class MultiServer {
         }
 
         //Method in Charge of sending the file to client
+        /**
+         * Metodo que envia archivo al cliente
+         *
+         *
+         */
         public boolean sendFile(String nombreArchivo) {
 
             try {
@@ -339,6 +397,11 @@ public class MultiServer {
         }//End SendFile
 
         //Método encargado de dividir los archivos de texto plano
+        /**
+         * Metodo que se encarga de dividir los archivos recibidos desde el cliente
+         *Los divide dependiendo de la cantidad de texto en el archivo 
+         *
+         */
         public void fileCutter(String filePath, String fileName) throws FileNotFoundException, IOException {
             File inputFile = new File(filePath);
 
@@ -401,6 +464,11 @@ public class MultiServer {
         }//end FileCutter
 
         //Metodo que une los archivos que estan en partes
+        /**
+         * Metodo encargado de enviar el archivo unido al cliente
+         *
+         *
+         */
         public void putTogetherFiles(String fileName) throws FileNotFoundException, IOException {
 
             File ofile = new File(fileName);
